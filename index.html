@@ -108,52 +108,6 @@
     width:7px;height:7px;border-radius:50%;background:var(--gold-grey);
   }
 
-  /* ---------- NAV ---------- */
-  nav{
-    position:sticky; top:0; z-index:20;
-    background:rgba(255,255,253,0.88);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--grey-line);
-  }
-  .nav-inner{
-    position:relative;
-    max-width:920px; margin:0 auto;
-    display:flex; justify-content:center; gap:clamp(18px,4vw,48px);
-    padding:20px 20px;
-    flex-wrap:wrap;
-  }
-  .nav-inner a{
-    text-decoration:none;
-    font-family:var(--font-sans);
-    font-size:12px;
-    letter-spacing:.28em;
-    text-transform:uppercase;
-    color:var(--grey-mid);
-    padding-bottom:6px;
-    border-bottom:1px solid transparent;
-    transition:color .3s ease, border-color .3s ease;
-    white-space:nowrap;
-  }
-  .nav-inner a:hover, .nav-inner a.active{
-    color:var(--grey-dark);
-    border-color:var(--gold-grey);
-  }
-  @media (max-width:680px){
-    .nav-inner{
-      flex-wrap:nowrap;
-      justify-content:flex-start;
-      overflow-x:auto;
-      -webkit-overflow-scrolling:touch;
-      scrollbar-width:none;
-      gap:26px;
-      padding:16px 20px;
-    }
-    .nav-inner::-webkit-scrollbar{display:none;}
-    .nav-inner a{
-      flex:0 0 auto;
-      font-size:11px;
-    }
-  }
   .lang-toggle{
     position:absolute;
     top:24px;
@@ -191,10 +145,6 @@
     position:relative;
     z-index:2;
   }
-  .section[id]{
-    scroll-margin-top:88px;
-  }
-
   .section-head{
     text-align:center;
     margin-bottom:64px;
@@ -523,16 +473,6 @@
   <div class="rule"></div>
 </header>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a href="#chaud" class="active" data-en="Boissons Chaudes" data-ar="مشروبات ساخنة">Boissons Chaudes</a>
-    <a href="#froid" data-en="Boissons Froides" data-ar="مشروبات باردة">Boissons Froides</a>
-    <a href="#patisserie" data-en="Pâtisserie" data-ar="حلويات">Pâtisserie</a>
-    <a href="#boulangerie" data-en="Boulangerie" data-ar="مخبوزات">Boulangerie</a>
-  </div>
-</nav>
-
 <!-- HOT BEVERAGES -->
 <section id="chaud" class="section">
   <div class="section-head reveal">
@@ -778,28 +718,6 @@
 </footer>
 
 <script>
-  const links = document.querySelectorAll('.nav-inner a');
-  const sections = document.querySelectorAll('.section[id]');
-
-  function setActive(link){
-    links.forEach(l=>l.classList.remove('active'));
-    if(link){
-      link.classList.add('active');
-    }
-  }
-
-  const navObs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
-        const link = document.querySelector('.nav-inner a[href="#'+e.target.id+'"]');
-        if(link) setActive(link);
-      }
-    });
-  }, {rootMargin:'-40% 0px -50% 0px'});
-  sections.forEach(s=>navObs.observe(s));
-
-  links.forEach(l=>l.addEventListener('click', ()=> setActive(l)));
-
   /* language toggle */
   const langToggle = document.getElementById('langToggle');
   const i18nEls = document.querySelectorAll('[data-en]');
