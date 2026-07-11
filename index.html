@@ -31,6 +31,11 @@
 
   html{scroll-behavior:smooth;}
 
+  html, body{
+    max-width:100%;
+    overflow-x:hidden;
+  }
+
   body{
     background:var(--sugar);
     color:var(--ink);
@@ -65,6 +70,11 @@
     color:var(--gold-grey);
     text-transform:uppercase;
     margin-bottom:26px;
+    max-width:100%;
+  }
+  @media (max-width:480px){
+    .hero .eyebrow{letter-spacing:.22em;}
+    .group-title{letter-spacing:.2em;}
   }
 
   .hero svg.mark{
@@ -122,10 +132,27 @@
     padding-bottom:6px;
     border-bottom:1px solid transparent;
     transition:color .3s ease, border-color .3s ease;
+    white-space:nowrap;
   }
   .nav-inner a:hover, .nav-inner a.active{
     color:var(--grey-dark);
     border-color:var(--gold-grey);
+  }
+  @media (max-width:680px){
+    .nav-inner{
+      flex-wrap:nowrap;
+      justify-content:flex-start;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      gap:26px;
+      padding:16px 20px;
+    }
+    .nav-inner::-webkit-scrollbar{display:none;}
+    .nav-inner a{
+      flex:0 0 auto;
+      font-size:11px;
+    }
   }
   .lang-toggle{
     position:absolute;
@@ -239,7 +266,6 @@
     font-weight:500;
     font-size:19px;
     color:var(--ink);
-    white-space:nowrap;
     transition:color .35s ease;
   }
   .item:hover .item-name{
